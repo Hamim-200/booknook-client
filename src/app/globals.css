@@ -1,26 +1,118 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Light theme: warm cream paper, deep green, amber highlights */
+:root {
+  --background: oklch(0.97 0.015 85);
+  --foreground: oklch(0.25 0.03 150);
+  --card: oklch(0.99 0.008 85);
+  --card-foreground: oklch(0.25 0.03 150);
+  --popover: oklch(0.99 0.008 85);
+  --popover-foreground: oklch(0.25 0.03 150);
+  --primary: oklch(0.38 0.07 155);
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.93 0.03 85);
+  --secondary-foreground: oklch(0.3 0.05 155);
+  --muted: oklch(0.94 0.02 85);
+  --muted-foreground: oklch(0.5 0.03 120);
+  --accent: oklch(0.92 0.04 100);
+  --accent-foreground: oklch(0.3 0.05 155);
+  --destructive: oklch(0.55 0.22 27);
+  --border: oklch(0.88 0.025 85);
+  --input: oklch(0.88 0.025 85);
+  --ring: oklch(0.55 0.08 155);
+  --brand: oklch(0.78 0.14 75);
+  --brand-foreground: oklch(0.25 0.05 70);
+  --radius: 0.625rem;
+}
+
+/* Dark theme: deep green night */
+.dark {
+  --background: oklch(0.2 0.02 155);
+  --foreground: oklch(0.94 0.015 85);
+  --card: oklch(0.25 0.025 155);
+  --card-foreground: oklch(0.94 0.015 85);
+  --popover: oklch(0.25 0.025 155);
+  --popover-foreground: oklch(0.94 0.015 85);
+  --primary: oklch(0.72 0.12 150);
+  --primary-foreground: oklch(0.2 0.03 155);
+  --secondary: oklch(0.3 0.03 155);
+  --secondary-foreground: oklch(0.94 0.015 85);
+  --muted: oklch(0.3 0.03 155);
+  --muted-foreground: oklch(0.72 0.03 110);
+  --accent: oklch(0.32 0.04 150);
+  --accent-foreground: oklch(0.94 0.015 85);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.6 0.08 150);
+  --brand: oklch(0.8 0.14 78);
+  --brand-foreground: oklch(0.25 0.05 70);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  /* Every heading uses the same serif font on every page */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Shared helpers so every page has the same spacing and heading style */
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility section-title {
+  @apply font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl;
 }
