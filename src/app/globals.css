@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-heading: var(--font-playfair);
+  --font-heading: var(--font-poppins);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -37,7 +37,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Light theme: warm cream paper, deep green, amber highlights */
+/* Light theme: warm cream paper, deep green, blue highlights */
 :root {
   --background: oklch(0.97 0.015 85);
   --foreground: oklch(0.25 0.03 150);
@@ -57,8 +57,8 @@
   --border: oklch(0.88 0.025 85);
   --input: oklch(0.88 0.025 85);
   --ring: oklch(0.55 0.08 155);
-  --brand: oklch(0.78 0.14 75);
-  --brand-foreground: oklch(0.25 0.05 70);
+  --brand: oklch(0.55 0.18 255);
+  --brand-foreground: oklch(0.98 0 0);
   --radius: 0.625rem;
 }
 
@@ -82,24 +82,21 @@
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.6 0.08 150);
-  --brand: oklch(0.8 0.14 78);
-  --brand-foreground: oklch(0.25 0.05 70);
+  --brand: oklch(0.7 0.15 250);
+  --brand-foreground: oklch(0.2 0.03 255);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-
   body {
     @apply bg-background text-foreground;
   }
-
   html {
     @apply font-sans;
   }
-
-  /* Every heading uses the same serif font on every page */
+  /* Every heading uses the same font on every page */
   h1,
   h2,
   h3,
