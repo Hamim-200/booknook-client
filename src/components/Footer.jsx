@@ -63,11 +63,11 @@ export default function Footer() {
                         </li>
                         <li className="flex items-center gap-2">
                             <Phone className="size-4 shrink-0 text-primary" />
-                            +1 555 010 0199
+                            +880 173823424
                         </li>
                         <li className="flex items-center gap-2">
                             <MapPin className="size-4 shrink-0 text-primary" />
-                            12 Library Lane, Booktown
+                            Uttara- 1230
                         </li>
                     </ul>
                 </div>
