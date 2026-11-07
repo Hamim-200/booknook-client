@@ -1,6 +1,8 @@
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
@@ -36,7 +38,9 @@ export default function RootLayout({ children }) {
           defaultTheme="light"
           disableTransitionOnChange
         >
-          {children}
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
           <Toaster position="top-right" richColors />
         </ThemeProvider>
       </body>

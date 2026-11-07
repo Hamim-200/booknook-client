@@ -1,21 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "@/components/ThemeToggle";
 
-// TEMPORARY page to test the theme. It will be replaced by the real Home page.
+// TEMPORARY page. It will be replaced by the real Home page.
 export default function Home() {
   return (
-    <main className="container-page py-16">
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="section-title">BookNook theme test</h1>
-        <ThemeToggle />
-      </div>
-
+    <div className="container-page py-16">
+      <h1 className="section-title mb-4">BookNook layout test</h1>
       <p className="mb-6 max-w-xl text-muted-foreground">
-        If you can see a cream background, a green button, and a serif heading,
-        the theme works.
+        Check the Navbar above and the Footer below. Then try the buttons.
       </p>
 
       <div className="flex flex-wrap gap-3">
@@ -28,10 +23,13 @@ export default function Home() {
         >
           Show error toast
         </Button>
-        <span className="rounded-md bg-brand px-3 py-2 text-sm font-medium text-brand-foreground">
-          Amber brand color
-        </span>
+        <Link
+          href="/this-page-does-not-exist"
+          className="rounded-md bg-brand px-3 py-2 text-sm font-medium text-brand-foreground"
+        >
+          Test the 404 page
+        </Link>
       </div>
-    </main>
+    </div>
   );
 }

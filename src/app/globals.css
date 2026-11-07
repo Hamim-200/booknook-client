@@ -90,12 +90,15 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
+
   /* Every heading uses the same font on every page */
   h1,
   h2,
