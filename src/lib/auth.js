@@ -27,6 +27,15 @@ export const auth = betterAuth({
     },
   },
 
+  // If someone registered with email and password and later uses Google
+  // with the same email, connect both logins to the same account
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+    },
+  },
+
   plugins: [
     // Lets a logged-in user get a signed token for our Express server.
     // The public keys for checking it are served at /api/auth/jwks
