@@ -95,9 +95,25 @@ export default function Footer() {
       </div>
 
       <div className="border-t">
-        <p className="container-page py-4 text-center text-sm text-muted-foreground">
-          © <CopyrightYear /> BookNook. All rights reserved.
-        </p>
+        <div className="container-page flex flex-col items-center justify-between gap-2 py-4 text-sm text-muted-foreground sm:flex-row">
+          <p>
+            © <CopyrightYear /> BookNook. All rights reserved.
+          </p>
+          <div className="flex gap-4">
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-primary"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-primary"
+            >
+              Terms of Service
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
