@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CalendarDays, UserRound } from "lucide-react";
+import { ArrowLeft, BookMarked, CalendarDays, UserRound } from "lucide-react";
+import BorrowDialog from "@/components/borrows/BorrowDialog";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import PageLoader from "@/components/Spinner";
 import { EmptyState, ErrorState } from "@/components/StateMessages";
 import { useApiData } from "@/hooks/useApiData";
+import { formatDate } from "@/lib/format";
 
 export default function BookDetails({ id }) {
   // GET /books/:id is protected, so we send the login token
@@ -15,7 +19,26 @@ export default function BookDetails({ id }) {
     error,
     loading,
     reload,
+    setData,
   } = useApiData(`/books/${encodeURIComponent(id)}`, { auth: true });
+
+  const [borrowOpen, setBorrowOpen] = useState(false);
+
+  // After a successful borrow, show one less copy right away
+  function handleBorrowed() {
+    setData((current) => ({
+      ...current,
+      availableCopies: current.availableCopies - 1,
+    }));
+    setBorrowOpen(false);
+  }
+
+  // The server said "already borrowed" or "not available".
+  // Close the modal and load the latest copy count.
+  function handleConflict() {
+    setBorrowOpen(false);
+    reload();
+  }
 
   if (loading) {
     return (
@@ -45,11 +68,6 @@ export default function BookDetails({ id }) {
   }
 
   const available = book.availableCopies > 0;
-  const addedOn = new Date(book.createdAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   return (
     <div className="container-page py-12">
@@ -118,14 +136,41 @@ export default function BookDetails({ id }) {
               <CalendarDays className="mt-0.5 size-4 shrink-0 text-primary" />
               <div>
                 <p className="text-muted-foreground">Added on</p>
-                <p className="font-medium text-foreground">{addedOn}</p>
+                <p className="font-medium text-foreground">
+                  {formatDate(book.createdAt)}
+                </p>
               </div>
             </div>
           </div>
 
-          {/* The "Borrow This Book" button is added in the borrow phase */}
+          {/* With 0 copies the button is disabled and says "Not Available" */}
+          <div>
+            {available ? (
+              <Button
+                size="lg"
+                className="w-full sm:w-auto"
+                onClick={() => setBorrowOpen(true)}
+              >
+                <BookMarked className="size-5" />
+                Borrow This Book
+              </Button>
+            ) : (
+              <Button size="lg" className="w-full sm:w-auto" disabled>
+                Not Available
+              </Button>
+            )}
+          </div>
         </div>
       </div>
+
+      {borrowOpen && (
+        <BorrowDialog
+          book={book}
+          onClose={() => setBorrowOpen(false)}
+          onBorrowed={handleBorrowed}
+          onConflict={handleConflict}
+        />
+      )}
     </div>
   );
 }
