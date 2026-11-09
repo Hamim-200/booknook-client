@@ -8,3 +8,8 @@ export const ALLOWED_IMAGE_TYPES = [
   "image/webp",
   "image/gif",
 ];
+
+// How many days a book can be borrowed.
+// This is only for showing the date in the borrow modal.
+// The server calculates the real return date (it uses 7 days too).
+export const LOAN_DAYS = 7;
