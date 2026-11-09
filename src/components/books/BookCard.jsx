@@ -4,9 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// One book card. Used on Home (New Arrivals) and on All Books.
-// Every cover has the same shape and every card fills the same height,
-// so the grid always looks even.
 export default function BookCard({ book }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm transition-shadow hover:shadow-md">
@@ -34,7 +31,6 @@ export default function BookCard({ book }) {
           </p>
         </div>
 
-        {/* mt-auto pushes the button to the bottom of every card */}
         <Link
           href={`/books/${book._id}`}
           className={cn(buttonVariants(), "mt-auto w-full")}

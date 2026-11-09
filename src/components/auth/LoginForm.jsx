@@ -16,7 +16,6 @@ import { safeRedirect } from "@/lib/redirect";
 
 export default function LoginForm() {
   const router = useRouter();
-  // The page the user wanted before being sent to Login (or Home)
   const redirect = safeRedirect(useSearchParams().get("redirect"));
   const registerHref =
     redirect !== "/"
@@ -87,7 +86,6 @@ export default function LoginForm() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                {/* The PDF says not to build password reset, so this only shows a message */}
                 <button
                   type="button"
                   onClick={() =>
@@ -125,7 +123,6 @@ export default function LoginForm() {
             <span className="h-px flex-1 bg-border" />
           </div>
 
-          {/* After Google sign-in the user returns to the page they wanted */}
           <GoogleButton callbackURL={redirect} />
 
           <p className="mt-6 text-center text-sm text-muted-foreground">

@@ -7,19 +7,14 @@ import client from "@/lib/mongodb";
 const db = client.db(process.env.DB_NAME || "booknook");
 
 export const auth = betterAuth({
-  // Store users, sessions and accounts in MongoDB
   database: mongodbAdapter(db, { client }),
 
   emailAndPassword: {
     enabled: true,
-    // The PDF asks for at least 6 characters (the default is 8)
     minPasswordLength: 6,
-    // The PDF wants the user sent to the Login page after registering,
-    // so we do not sign them in automatically
     autoSignIn: false,
   },
 
-  // Google login
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -27,8 +22,6 @@ export const auth = betterAuth({
     },
   },
 
-  // If someone registered with email and password and later uses Google
-  // with the same email, connect both logins to the same account
   account: {
     accountLinking: {
       enabled: true,
@@ -37,18 +30,14 @@ export const auth = betterAuth({
   },
 
   plugins: [
-    // Lets a logged-in user get a signed token for our Express server.
-    // The public keys for checking it are served at /api/auth/jwks
     jwt({
       jwt: {
-        // Only put what Express needs inside the token
         definePayload: ({ user }) => ({
           email: user.email,
           name: user.name,
         }),
       },
     }),
-    // Must stay the LAST plugin. It lets Next.js save the login cookie.
     nextCookies(),
   ],
 });

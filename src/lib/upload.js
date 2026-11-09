@@ -1,7 +1,6 @@
 import { ApiError } from "@/lib/api";
 import { ALLOWED_IMAGE_TYPES, MAX_IMAGE_SIZE } from "@/lib/constants";
 
-// Returns an error message if the file is not OK, or "" if it is fine
 export function validateImage(file) {
   if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
     return "Please choose a JPG, PNG, WEBP or GIF image.";
@@ -12,7 +11,6 @@ export function validateImage(file) {
   return "";
 }
 
-// Sends the image to our /api/upload route and returns the image URL
 export async function uploadImage(file) {
   const formData = new FormData();
   formData.append("image", file);

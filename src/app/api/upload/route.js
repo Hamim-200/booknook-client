@@ -2,11 +2,8 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { ALLOWED_IMAGE_TYPES, MAX_IMAGE_SIZE } from "@/lib/constants";
 
-// POST /api/upload
-// Receives an image from the browser and uploads it to imgbb.
-// The imgbb key stays here on the server and is never sent to the browser.
+
 export async function POST(request) {
-  // Only logged-in users may upload, so nobody can misuse our imgbb account
   const session = await auth.api.getSession({ headers: request.headers });
   if (!session) {
     return NextResponse.json(
@@ -54,7 +51,6 @@ export async function POST(request) {
     );
   }
 
-  // Forward the image to imgbb
   const upload = new FormData();
   upload.append("image", file);
 
@@ -75,7 +71,6 @@ export async function POST(request) {
   const url = result?.data?.url || result?.data?.display_url;
 
   if (!response.ok || !url) {
-    // Log only the reason, never the key
     console.error(
       "imgbb upload failed:",
       result?.error?.message || response.status

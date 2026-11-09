@@ -67,7 +67,6 @@ export default function RegisterForm() {
       );
     }
 
-    // Do not register with an invalid password
     if (!allRulesMet) {
       setShowRuleErrors(true);
       return showError(
@@ -207,7 +206,6 @@ export default function RegisterForm() {
             <span className="h-px flex-1 bg-border" />
           </div>
 
-          {/* After Google sign-in the PDF sends the user to the Home page */}
           <GoogleButton callbackURL="/" />
 
           <p className="mt-6 text-center text-sm text-muted-foreground">

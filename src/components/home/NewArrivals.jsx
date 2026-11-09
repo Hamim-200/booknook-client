@@ -11,7 +11,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { useApiData } from "@/hooks/useApiData";
 
 export default function NewArrivals() {
-  // The server sorts newest first. limit=6 gives only the latest 6 books.
   const { data: books, error, loading, reload } = useApiData("/books?limit=6");
 
   return (

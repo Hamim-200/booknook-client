@@ -2,8 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-// Wraps anything and fades it in (sliding up a little) when it scrolls into view.
-// People who turned on "reduce motion" in their system get no animation.
 export default function Reveal({ children, delay = 0, className }) {
   const reduceMotion = useReducedMotion();
 

@@ -35,14 +35,12 @@ const publicLinks = [
   { href: "/books", label: "All Books" },
 ];
 
-// These three are private: they only show when the user is logged in
 const privateLinks = [
   { href: "/add-book", label: "Add Book" },
   { href: "/my-books", label: "My Books" },
   { href: "/my-borrows", label: "My Borrows" },
 ];
 
-// Turns "Jane Doe" into "JD" (shown if the photo cannot load)
 function getInitials(name) {
   return (
     (name || "U")
@@ -60,13 +58,11 @@ export default function Navbar() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // The real login state from Better Auth
   const { data: session, isPending } = useSession();
   const user = session?.user ?? null;
 
   const links = user ? [...publicLinks, ...privateLinks] : publicLinks;
 
-  // "/" must match exactly, other links match their whole section
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -93,8 +89,6 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Logo />
-
-        {/* Desktop links */}
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((link) => (
             <Link key={link.href} href={link.href} className={linkClass(link.href)}>
@@ -105,8 +99,6 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-
-          {/* While we check the login state, show a placeholder (no flicker) */}
           {isPending && <Skeleton className="size-9 rounded-full" />}
 
           {/* Logged in: photo with dropdown */}

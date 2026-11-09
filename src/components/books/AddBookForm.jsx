@@ -22,7 +22,6 @@ import { CATEGORIES } from "@/lib/constants";
 import { uploadImage, validateImage } from "@/lib/upload";
 
 export default function AddBookForm() {
-  // The logged-in user (shown as read-only fields)
   const { data: session } = useSession();
   const user = session?.user;
 
@@ -84,12 +83,9 @@ export default function AddBookForm() {
 
     setSubmitting(true);
     try {
-      // Step 1: upload the image and get its URL
       setStage("Uploading image...");
       const imageUrl = await uploadImage(imageFile);
 
-      // Step 2: save the book in our database through the Express server.
-      // Name, email and date are added by the server, not sent from here.
       setStage("Saving book...");
       await apiFetch("/books", {
         auth: true,

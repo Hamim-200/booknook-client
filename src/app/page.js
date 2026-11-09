@@ -5,7 +5,6 @@ import NewArrivals from "@/components/home/NewArrivals";
 import ReaderReviews from "@/components/home/ReaderReviews";
 import TopCategories from "@/components/home/TopCategories";
 
-// The Home page title comes from the default in layout.js: "BookNook | Home"
 export default function Home() {
   return (
     <>

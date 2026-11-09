@@ -138,7 +138,6 @@ export default function BookDetails({ id }) {
             </div>
           </div>
 
-          {/* With 0 copies the button is disabled and says "Not Available" */}
           <div>
             {available ? (
               <Button

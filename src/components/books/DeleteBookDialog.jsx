@@ -14,10 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/Spinner";
 import { apiFetch } from "@/lib/api";
 
-// The confirm modal that replaces the browser's confirm() box.
-//   book:      the book the user wants to delete
-//   onClose:   called when the user cancels
-//   onDeleted: called after the book is deleted (receives the book id)
 export default function DeleteBookDialog({ book, onClose, onDeleted }) {
   const [deleting, setDeleting] = useState(false);
 
@@ -37,7 +33,6 @@ export default function DeleteBookDialog({ book, onClose, onDeleted }) {
     <AlertDialog
       open
       onOpenChange={(open) => {
-        // Do not let the modal close while the delete is running
         if (!open && !deleting) onClose();
       }}
     >

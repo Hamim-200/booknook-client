@@ -1,6 +1,5 @@
 import Reveal from "@/components/Reveal";
 
-// The same heading style for every section on the Home page
 export default function SectionHeading({ title, text }) {
   return (
     <Reveal className="mb-10 text-center">

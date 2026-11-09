@@ -29,14 +29,12 @@ function GoogleIcon() {
   );
 }
 
-// callbackURL = where the user lands after Google sign-in succeeds
 export default function GoogleButton({ callbackURL = "/" }) {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
     setLoading(true);
     try {
-      // On success the browser is sent to Google, so we stay in "loading"
       const { error } = await signIn.social({
         provider: "google",
         callbackURL,

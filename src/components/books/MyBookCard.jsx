@@ -4,8 +4,6 @@ import { Pencil, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-// A book card for the My Books page, with Edit and Delete buttons.
-// Same shape and height rules as BookCard, so the grid stays even.
 export default function MyBookCard({ book, onEdit, onDelete }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm">

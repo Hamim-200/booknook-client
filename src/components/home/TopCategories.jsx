@@ -3,7 +3,6 @@ import SectionHeading from "@/components/home/SectionHeading";
 import Reveal from "@/components/Reveal";
 import { CATEGORIES } from "@/lib/constants";
 
-// An icon and a short line for each category
 const categoryInfo = {
   Fiction: { Icon: Sparkles, text: "Novels and stories to get lost in." },
   Science: { Icon: FlaskConical, text: "Explore how the world works." },

@@ -12,7 +12,6 @@ import { EmptyState, ErrorState } from "@/components/StateMessages";
 import { useApiData } from "@/hooks/useApiData";
 
 export default function MyBooks({ email }) {
-  // GET /books?email=... returns only the books this user added
   const {
     data: books,
     error,
@@ -21,11 +20,9 @@ export default function MyBooks({ email }) {
     setData,
   } = useApiData(`/books?email=${encodeURIComponent(email)}`);
 
-  // Which book is being edited or deleted right now (null = none)
   const [editingBook, setEditingBook] = useState(null);
   const [deletingBook, setDeletingBook] = useState(null);
 
-  // After a save, swap the updated book into the list on screen
   function handleSaved(updated) {
     setData((list) =>
       list.map((book) => (book._id === updated._id ? updated : book))
@@ -33,7 +30,6 @@ export default function MyBooks({ email }) {
     setEditingBook(null);
   }
 
-  // After a delete, remove the book from the list on screen
   function handleDeleted(id) {
     setData((list) => list.filter((book) => book._id !== id));
     setDeletingBook(null);
@@ -84,7 +80,6 @@ export default function MyBooks({ email }) {
         </div>
       )}
 
-      {/* The key makes the form start fresh for each book */}
       {editingBook && (
         <EditBookDialog
           key={editingBook._id}

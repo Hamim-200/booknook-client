@@ -5,7 +5,6 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-// A password field with an eye button to show or hide the password
 export default function PasswordInput({ className, ...props }) {
   const [show, setShow] = useState(false);
 

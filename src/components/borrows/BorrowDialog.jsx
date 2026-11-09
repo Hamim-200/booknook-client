@@ -19,11 +19,6 @@ import { useSession } from "@/lib/auth-client";
 import { LOAN_DAYS } from "@/lib/constants";
 import { formatDate } from "@/lib/format";
 
-// The modal with the borrow form.
-//   book:       the book to borrow
-//   onClose:    called when the user cancels
-//   onBorrowed: called after the book was borrowed
-//   onConflict: called when the server says "already borrowed" or "not available"
 export default function BorrowDialog({
   book,
   onClose,
@@ -35,7 +30,6 @@ export default function BorrowDialog({
   const user = session?.user;
   const [submitting, setSubmitting] = useState(false);
 
-  // Shown for information only. The server works out the real return date.
   const [returnBy] = useState(() => {
     const date = new Date();
     date.setDate(date.getDate() + LOAN_DAYS);
@@ -47,8 +41,6 @@ export default function BorrowDialog({
     setSubmitting(true);
 
     try {
-      // Only the book id is sent. The server takes your name and email
-      // from your login token, so nobody can borrow in someone else's name.
       const borrow = await apiFetch("/borrows", {
         auth: true,
         method: "POST",
@@ -68,7 +60,6 @@ export default function BorrowDialog({
         error.message || "Could not borrow the book. Please try again."
       );
       setSubmitting(false);
-      // 409 = already borrowed, or the last copy was just taken
       if (error.status === 409) onConflict();
     }
   }
@@ -77,7 +68,6 @@ export default function BorrowDialog({
     <Dialog
       open
       onOpenChange={(open) => {
-        // Do not let the modal close while the request is running
         if (!open && !submitting) onClose();
       }}
     >

@@ -1,7 +1,6 @@
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// A small spinning icon, for buttons or small areas
 export function Spinner({ className }) {
   return (
     <Loader2
@@ -11,7 +10,6 @@ export function Spinner({ className }) {
   );
 }
 
-// A big centered spinner, for whole pages while data loads
 export default function PageLoader({ label = "Loading..." }) {
   return (
     <div

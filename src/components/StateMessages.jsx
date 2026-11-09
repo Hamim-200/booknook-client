@@ -3,7 +3,6 @@ import { AlertTriangle, BookX } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// Shown when loading data fails (server down, bad token, and so on)
 export function ErrorState({ message = "Something went wrong.", onRetry }) {
   return (
     <div
@@ -24,7 +23,6 @@ export function ErrorState({ message = "Something went wrong.", onRetry }) {
   );
 }
 
-// Shown when there is nothing to display yet
 export function EmptyState({ title, text, actionHref, actionLabel }) {
   return (
     <div className="mx-auto flex max-w-md flex-col items-center gap-3 rounded-xl border border-dashed px-6 py-12 text-center">

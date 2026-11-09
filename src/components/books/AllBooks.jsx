@@ -6,7 +6,6 @@ import { EmptyState, ErrorState } from "@/components/StateMessages";
 import { useApiData } from "@/hooks/useApiData";
 
 export default function AllBooks() {
-  // GET /books is public, so no token is needed
   const { data: books, error, loading, reload } = useApiData("/books");
 
   return (

@@ -1,4 +1,3 @@
-// A simple, readable layout shared by the Privacy Policy and Terms pages
 export default function LegalPage({ title, updated, children }) {
   return (
     <div className="container-page py-12">

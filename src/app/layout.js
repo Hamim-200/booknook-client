@@ -27,8 +27,7 @@ export const metadata = {
     "BookNook is a small online library. Add a book, borrow a book, return a book.",
 };
 
-// Shown for a moment while the full Navbar loads.
-// It has the same height, so the page does not jump.
+
 function NavbarFallback() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur">

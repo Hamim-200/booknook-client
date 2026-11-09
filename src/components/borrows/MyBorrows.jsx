@@ -21,7 +21,6 @@ import { apiFetch } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 
 export default function MyBorrows() {
-  // GET /borrows returns only the borrows of the logged-in user
   const {
     data: borrows,
     error,
@@ -30,7 +29,6 @@ export default function MyBorrows() {
     setData,
   } = useApiData("/borrows", { auth: true });
 
-  // The borrow that is being returned right now (null = none)
   const [returningId, setReturningId] = useState(null);
 
   async function handleReturn(borrow) {
@@ -44,7 +42,6 @@ export default function MyBorrows() {
       setData((list) => list.filter((item) => item._id !== borrow._id));
     } catch (error) {
       toast.error(error.message || "Could not return the book.");
-      // 404 = it was already returned, so remove it from the list
       if (error.status === 404) {
         setData((list) => list.filter((item) => item._id !== borrow._id));
       }

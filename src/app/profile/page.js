@@ -12,7 +12,6 @@ export const metadata = { title: "My Profile" };
 export default async function ProfilePage() {
   const session = await auth.api.getSession({ headers: await headers() });
 
-  // Extra safety: the proxy already protects this page
   if (!session) redirect("/login?redirect=/profile");
 
   const { user } = session;

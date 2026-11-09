@@ -20,7 +20,6 @@ const reviews = [
   },
 ];
 
-// Turns "Amina Rahman" into "AR"
 function getInitials(name) {
   return name
     .split(" ")

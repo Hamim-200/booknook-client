@@ -44,7 +44,6 @@ export default function HeroSlider() {
         pagination={{ clickable: true }}
         navigation
         className="overflow-hidden rounded-2xl"
-        // White arrows and dots, so they are easy to see on the dark slides
         style={{
           "--swiper-theme-color": "#ffffff",
           "--swiper-navigation-color": "#ffffff",
