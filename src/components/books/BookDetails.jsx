@@ -13,7 +13,6 @@ import { useApiData } from "@/hooks/useApiData";
 import { formatDate } from "@/lib/format";
 
 export default function BookDetails({ id }) {
-  // GET /books/:id is protected, so we send the login token
   const {
     data: book,
     error,
@@ -24,7 +23,6 @@ export default function BookDetails({ id }) {
 
   const [borrowOpen, setBorrowOpen] = useState(false);
 
-  // After a successful borrow, show one less copy right away
   function handleBorrowed() {
     setData((current) => ({
       ...current,
@@ -33,8 +31,6 @@ export default function BookDetails({ id }) {
     setBorrowOpen(false);
   }
 
-  // The server said "already borrowed" or "not available".
-  // Close the modal and load the latest copy count.
   function handleConflict() {
     setBorrowOpen(false);
     reload();
@@ -49,7 +45,6 @@ export default function BookDetails({ id }) {
   }
 
   if (error) {
-    // 400 = the id is not valid, 404 = no book with that id
     const notFound = error.status === 400 || error.status === 404;
     return (
       <div className="container-page py-12">
